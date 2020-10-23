@@ -1,0 +1,16 @@
+<div>
+  <span *ngFor="let p of splittedPath">
+  <a (click)="backInternalArray(p)">{{ p }}</a>
+  <span *ngIf="splittedPath.length>1 && splittedPath.indexOf(p) != splittedPath.length-1">&nbsp;>&nbsp;</span>
+  </span>
+</div>
+<mat-form-field appearance="outline" class="container mat-ff" >
+  <mat-select  (openedChange)="toggleSelect($event)" (selectionChange)="onSelected($event)" [formControl]="control" placeholder="Categoria" floatlLabel="never">
+    <!-- <mat-select-trigger>Categoria</mat-select-trigger> -->
+    <mat-option *ngFor="let c of internalArray" [value]="c.Id">
+      <span>{{ c.Nome }}</span>
+      <div *ngIf="c.SubCat && selectOpened" style="float: right;" (click)="openSub(c)" >►</div>
+    </mat-option>
+  </mat-select>
+
+</mat-form-field>
